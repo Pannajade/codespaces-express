@@ -8,9 +8,9 @@
 <body>
     <h1>This is Product page</h1>
     <% for (let i = 0; i < paginatedProduct.length;i++) {%>
-        <h2><%=paginatedProduct[i].name%></h2>
-        <h3><%=paginatedProduct[i].description%></h3>
-        <p><%=paginatedProduct[i].price%></p>
+        <h2><li><%=paginatedProduct[i].name%></li></h2>
+        <h3><ul><%=paginatedProduct[i].description%></ul></h3>
+        <p><ul><%=paginatedProduct[i].price%></ul></p>
     <%}%>
     <!--array.foreach,array.map-->
     <a href="/product?limit=<%= limit%>&page=<%= page-1 %>">Previous</a>

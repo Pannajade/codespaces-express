@@ -4,6 +4,9 @@ const port = 3000
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
 
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+
 let products = []
 for (let i = 1; i <= 100; i++){
   let product = {
@@ -41,13 +44,13 @@ app.get('/add-product', (req,res) => {
   res.render('add-product')
 })
 
-app.post('/add-product', (req,res) => {
-  const{ id,name,price,description} = req.body;
+app.post('/add-product', (req,res)=> {
+  const{id,name,price,description} = req.body
   const newProduct = {
-    id : products.length +1,
+    id : products.length + 1,
     name,
-    price,
-    description
+    description,
+    price
   };
   products.push(newProduct);
   res.redirect('/product');
