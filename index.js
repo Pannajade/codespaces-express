@@ -33,8 +33,8 @@ app.get('/product', (req, res) => {
   let limit = parseInt(req.query.limit)
   let page = parseInt(req.query.page)
 
-  let startIndex = (page-1)*limit
-  let endIndex = page * limit
+  let startIndex = (page-1)*limit*3
+  let endIndex = page * 3 * limit
   let paginatedProduct = products.slice(startIndex,endIndex)
 
   res.render('product',{paginatedProduct,limit,page})
@@ -42,6 +42,28 @@ app.get('/product', (req, res) => {
 
 app.get('/add-product', (req,res) => {
   res.render('add-product')
+})
+
+app.get('/edit-product/:id', (req,res)=>{
+  const productId = parseInt(req.params.id);
+  const product = products.find(p => p.id === productId);
+  if(!product){
+    res.status(404).send('Product not found');
+  } else{
+  res.render('edit-product',{product});
+  }
+})
+
+app.post('/edit-product' , (req,res) => {
+  const {id,name,price,description} = req.body;
+  const productId = parseInt(id);
+  const index = products.findIndex(p => p.id === productId);
+  if (index === -1){
+    res.status(404).send('Product not found');
+  }else{
+    products[index] = {id,name,description,price};
+    res.redirect('/');
+  }
 })
 
 app.post('/add-product', (req,res)=> {
