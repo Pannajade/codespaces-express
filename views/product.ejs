@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>This is Product page</h1>
+    <% for (let i = 0; i < paginatedProduct.length;i++) {%>
+        <h2><%=paginatedProduct[i].name%></h2>
+        <h3><%=paginatedProduct[i].description%></h3>
+        <p><%=paginatedProduct[i].price%></p>
+    <%}%>
+    <!--array.foreach,array.map-->
+    <a href="/product?limit=<%= limit%>&page=<%= page-1 %>">Previous</a>
+    <a href="/product?limit=<%= limit%>&page=<%= page+1 %>">Next</a>
+</body>
+</html>
