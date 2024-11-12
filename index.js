@@ -62,7 +62,7 @@ app.post('/edit-product' , (req,res) => {
     res.status(404).send('Product not found');
   }else{
     products[index] = {id,name,description,price};
-    res.redirect('/');
+    res.redirect('/product');
   }
 })
 

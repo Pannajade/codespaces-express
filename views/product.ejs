@@ -7,11 +7,21 @@
 </head>
 <body>
     <h1>This is Product page</h1>
-    <% for (let i = 0; i < paginatedProduct.length;i++) {%>
+    <!--<% for (let i = 0; i < paginatedProduct.length;i++) {%>
         <h2><li><%=paginatedProduct[i].name%></li></h2>
         <h3><ul><%=paginatedProduct[i].description%></ul></h3>
         <p><ul><%=paginatedProduct[i].price%></ul></p>
-    <%}%>
+    <%}%> -->
+    <ul>
+        <% paginatedProduct.forEach(product => { %>
+        <li>
+            <h2><%= product.name %></h2>
+            <h3><%= product.description %></h3>
+            <p><%= product.price %></p>
+            <a href="/edit-product/<%= product.id %>">Edit</a>
+        </li>
+        <% }) %>
+    </ul>
     <!--array.foreach,array.map-->
     <a href="/product?limit=<%= limit%>&page=<%= page-1 %>">Previous</a>
     <a href="/product?limit=<%= limit%>&page=<%= page+1 %>">Next</a>
